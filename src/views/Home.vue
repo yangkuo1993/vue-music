@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <mt-tabbar v-model="selected">
+    <div class="full-container">
+      <mt-tabbar v-model="selected" style="z-index: 999">
         <mt-tab-item id="发现音乐">
           <img slot="icon" src="../assets/discover.svg">
           发现音乐
@@ -18,7 +18,7 @@
           账号
         </mt-tab-item>
       </mt-tabbar>
-      <mt-tab-container v-model="selected">
+      <mt-tab-container class="full-container" v-model="selected">
         <mt-tab-container-item id="发现音乐">
           <Discover-Music></Discover-Music>
         </mt-tab-container-item>
@@ -45,7 +45,7 @@
     name: 'home',
     data () {
       return {
-        selected: '我的音乐'
+        selected: '发现音乐'
       }
     },
     mounted () {
@@ -61,5 +61,8 @@
   }
 </script>
 <style>
-
+  .mint-tab-container-wrap{
+    width: 100%;
+    height: 100%;
+  }
 </style>

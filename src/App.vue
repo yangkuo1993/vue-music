@@ -37,4 +37,11 @@ export default {
     margin: 0;
     padding: 0;
   }
+  ul{
+    margin: 0;
+    padding: 0;
+  }
+  .relative{
+    position: relative;
+  }
 </style>
