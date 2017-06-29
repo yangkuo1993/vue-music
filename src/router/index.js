@@ -7,12 +7,23 @@ const Home = resolve => {
     resolve(require('@/views/Home'))
   })
 } // Home主页
+const Login = resolve => {
+  require.ensure(['@/views/Login'], () => {
+    resolve(require('@/views/Login'))
+  })
+} // login登录页
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'Home',
       component: Home
-    }
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    { path: '*', redirect: '/login' }
   ]
 })
