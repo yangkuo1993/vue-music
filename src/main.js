@@ -3,20 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuex from 'vuex'
+import axios from 'axios'
+import {store} from './store/index'
 
 Vue.config.productionTip = false
-Vue.use(Vuex)
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
+Vue.prototype.$http = axios
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
