@@ -1,37 +1,6 @@
 <template>
     <div class="full-container">
-      <mt-tabbar v-model="selected" style="z-index: 999">
-        <mt-tab-item id="发现音乐">
-          <img slot="icon" src="../assets/discover.svg">
-          发现音乐
-        </mt-tab-item>
-        <mt-tab-item id="我的音乐">
-          <img slot="icon" src="../assets/mymusic.svg">
-          我的音乐
-        </mt-tab-item>
-        <mt-tab-item id="朋友">
-          <img slot="icon" src="../assets/friends.svg">
-          朋友
-        </mt-tab-item>
-        <mt-tab-item id="账号">
-          <img slot="icon" src="../assets/count.svg">
-          账号
-        </mt-tab-item>
-      </mt-tabbar>
-      <mt-tab-container class="full-container" v-model="selected">
-        <mt-tab-container-item id="发现音乐">
-          <Discover-Music></Discover-Music>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="我的音乐">
-          <My-Music></My-Music>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="朋友">
-          <Friends></Friends>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="账号">
-          <Account></Account>
-        </mt-tab-container-item>
-      </mt-tab-container>
+      123124
     </div>
 </template>
 

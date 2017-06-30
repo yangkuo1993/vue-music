@@ -3,7 +3,7 @@
       <ul class="out-ul">
         <li v-for="(menu,index) in menuList" :key="menu.id"
             :class="[{'red-under-color': selectedMenu === menu.id}]"
-            @click="chooseMenu(menu.id,index)">{{menu.name}}</li>
+            @click="chooseMenu(menu,index)">{{menu.name}}</li>
         <span class="under-line" :class="selectedIndex === 0 ?
         'under-line-transition1' : selectedIndex === 1 ?
          'under-line-transition2' : selectedIndex === 2 ?
@@ -28,9 +28,10 @@
         }
       },
       methods: {
-        chooseMenu: function (menuId, index) {
-          this.selectedMenu = menuId
+        chooseMenu: function (menu, index) {
+          this.selectedMenu = menu.id
           this.selectedIndex = index
+          this.$router.push({ name: 'Login1' })
         }
       },
       computed: {

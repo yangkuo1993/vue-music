@@ -1,6 +1,7 @@
 <template>
     <div class="full-container">
       <tab-choose-bar :liItems="menuList"></tab-choose-bar>
+      <router-view></router-view>
     </div>
 </template>
 
@@ -15,7 +16,8 @@
         menuList: [
           {
             name: '个性推荐',
-            id: 'meun-1'
+            id: 'meun-1',
+            path: '/login1'
           },
           {
             name: '歌单',
