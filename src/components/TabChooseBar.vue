@@ -4,17 +4,11 @@
         <li v-for="(menu,index) in menuList" :key="menu.id"
             :class="[{'red-under-color': selectedMenu === menu.id}]"
             @click="chooseMenu(menu,index)">{{menu.name}}</li>
-        <span class="under-line" :class="selectedIndex === 0 ?
-        'under-line-transition1' : selectedIndex === 1 ?
-         'under-line-transition2' : selectedIndex === 2 ?
+        <span class="under-line" :class="selectedMenu === 'meun-1' ?
+        'under-line-transition1' : selectedMenu === 'meun-2' ?
+         'under-line-transition2' : selectedMenu === 'meun-3' ?
           'under-line-transition3' : 'under-line-transition4' "></span>
       </ul>
-      <div class="tab-container-top">
-        <div v-show="selectedMenu === 'meun-1'">1</div>
-        <div v-show="selectedMenu === 'meun-2'">2</div>
-        <div v-show="selectedMenu === 'meun-3'">3</div>
-        <div v-show="selectedMenu === 'meun-4'">4</div>
-      </div>
     </div>
 </template>
 
@@ -29,7 +23,7 @@
       },
       data () {
         return {
-          selectedMenu: 'meun-1',
+          selectedMenu: this.$store.state.discover.chooseMenu,
           selectedIndex: 0
         }
       },
@@ -37,6 +31,7 @@
         chooseMenu: function (menu, index) {
           this.selectedMenu = menu.id
           this.selectedIndex = index
+          this.$store.commit('GET_DISCOVER_TAB', this.selectedMenu)
         }
       },
       computed: {
@@ -87,8 +82,5 @@
   }
   .under-line-transition4{
     transform: translate3d(300%, 0px, 0px);
-  }
-  .tab-container-top{
-    margin-top: 2.05rem;
   }
 </style>

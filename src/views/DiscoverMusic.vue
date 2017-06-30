@@ -1,7 +1,12 @@
 <template>
     <div class="full-container">
       <tab-choose-bar :liItems="menuList"></tab-choose-bar>
-      <router-view></router-view>
+      <div class="tab-container-top">
+        <div v-show="chooseMenu === 'meun-1'">1</div>
+        <div v-show="chooseMenu === 'meun-2'">2</div>
+        <div v-show="chooseMenu === 'meun-3'">3</div>
+        <div v-show="chooseMenu === 'meun-4'">4</div>
+      </div>
     </div>
 </template>
 
@@ -11,7 +16,6 @@
     name: 'discoverMusic',
     data () {
       return {
-        selected: '1',
         result: [],
         menuList: [
           {
@@ -35,9 +39,16 @@
     },
     components: {
       'tab-choose-bar': tabChooseBar
+    },
+    computed: {
+      chooseMenu: function () {
+        return this.$store.state.discover.chooseMenu
+      }
     }
   }
 </script>
 <style>
-
+  .tab-container-top{
+    margin-top: 2.05rem;
+  }
 </style>
