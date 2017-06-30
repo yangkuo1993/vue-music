@@ -21,18 +21,21 @@
             <p class="round-type-p">云音乐热歌榜</p>
         </div>
       </div>
+      <broad-cast-title titleName="精选专栏" path="123"></broad-cast-title>
     </div>
 </template>
 
 <script>
   import banner from '../components/banner'
+  import broadCastTitle from '../components/broadCastTitle'
   export default {
     name: 'personalRecommend',
     data () {
       return {}
     },
     components: {
-      'Banner': banner
+      'Banner': banner,
+      'broad-cast-title': broadCastTitle
     }
   }
 </script>
