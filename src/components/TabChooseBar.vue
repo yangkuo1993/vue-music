@@ -9,6 +9,12 @@
          'under-line-transition2' : selectedIndex === 2 ?
           'under-line-transition3' : 'under-line-transition4' "></span>
       </ul>
+      <div class="tab-container-top">
+        <div v-show="selectedMenu === 'meun-1'">1</div>
+        <div v-show="selectedMenu === 'meun-2'">2</div>
+        <div v-show="selectedMenu === 'meun-3'">3</div>
+        <div v-show="selectedMenu === 'meun-4'">4</div>
+      </div>
     </div>
 </template>
 
@@ -62,7 +68,7 @@
     color: red;
   }
   .under-line{
-    height: 1px;
+    height: 0.05rem;
     background: red;
     width: 25%;
     position: absolute;
@@ -81,5 +87,8 @@
   }
   .under-line-transition4{
     transform: translate3d(300%, 0px, 0px);
+  }
+  .tab-container-top{
+    margin-top: 2.05rem;
   }
 </style>
