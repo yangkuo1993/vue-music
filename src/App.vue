@@ -49,7 +49,6 @@
       onWindowResize()
     },
     mounted () {
-      console.log(this.$store.state.user.hotMusicList)
     },
     components: {
     },

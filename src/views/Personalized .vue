@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div>personalized
     </div>
 </template>
 
 <script>
   export default {
-    name: 'personalized ',
+    name: 'personalRecommend',
     data () {
       return {}
     }

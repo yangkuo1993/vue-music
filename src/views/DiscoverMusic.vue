@@ -2,16 +2,28 @@
     <div class="full-container">
       <tab-choose-bar :liItems="menuList"></tab-choose-bar>
       <div class="tab-container-top">
-        <div v-show="chooseMenu === 'meun-1'">1</div>
-        <div v-show="chooseMenu === 'meun-2'">2</div>
-        <div v-show="chooseMenu === 'meun-3'">3</div>
-        <div v-show="chooseMenu === 'meun-4'">4</div>
+        <div v-show="chooseMenu === 'meun-1'">
+          <personal-recommend></personal-recommend>
+        </div>
+        <div v-show="chooseMenu === 'meun-2'">
+          <song-list></song-list>
+        </div>
+        <div v-show="chooseMenu === 'meun-3'">
+          <broad-cast></broad-cast>
+        </div>
+        <div v-show="chooseMenu === 'meun-4'">
+          <rank-list></rank-list>
+        </div>
       </div>
     </div>
 </template>
 
 <script>
   import tabChooseBar from '@/components/tabChooseBar'
+  import personalized from './Personalized .vue'
+  import songList from './SongList.vue'
+  import broadCast from './BroadCast.vue'
+  import rankList from './RankingList.vue'
   export default {
     name: 'discoverMusic',
     data () {
@@ -37,8 +49,14 @@
         ]
       }
     },
+    created () {
+    },
     components: {
-      'tab-choose-bar': tabChooseBar
+      'tab-choose-bar': tabChooseBar,
+      'personal-recommend': personalized,
+      'song-list': songList,
+      'broad-cast': broadCast,
+      'rank-list': rankList
     },
     computed: {
       chooseMenu: function () {

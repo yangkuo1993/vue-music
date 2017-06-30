@@ -1,11 +1,12 @@
 <template>
-    <div>broadCast
+    <div>
+      banner
     </div>
 </template>
 
 <script>
   export default {
-    name: 'broadCast',
+    name: 'banner',
     data () {
       return {}
     }

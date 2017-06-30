@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <div>songList
     </div>
 </template>
 
 <script>
     export default {
-        name: 'songList',
-        data () {
-            return {}
-        }
+      name: 'songList',
+      data () {
+        return {}
+      }
     }
 </script>
 <style>
