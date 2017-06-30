@@ -63,7 +63,7 @@
     color: red;
   }
   .under-line{
-    height: 0.05rem;
+    height: 1px;
     background: red;
     width: 25%;
     position: absolute;

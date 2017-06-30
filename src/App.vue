@@ -105,4 +105,7 @@
     background: #f44336;
     color: #ffffff;
   }
+  .inline-block{
+    display: inline-block;
+  }
 </style>
