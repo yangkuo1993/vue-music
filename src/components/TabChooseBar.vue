@@ -31,7 +31,6 @@
         chooseMenu: function (menu, index) {
           this.selectedMenu = menu.id
           this.selectedIndex = index
-          this.$router.push({ name: 'Login1' })
         }
       },
       computed: {
