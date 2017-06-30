@@ -1,5 +1,5 @@
 module.exports = {
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'http://10.96.5.242:3000',
   versionNumber: '0.0.1',
   music: {
     // 获取最热或最新音乐地址 limit new/hot

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <mt-tabbar v-model="selected" style="z-index: 999">
+    <mt-tabbar v-model="selected" style="z-index: 999;background: #f44336">
       <mt-tab-item id="发现音乐">
         <img slot="icon" src="./assets/discover.svg">
         发现音乐
@@ -92,6 +92,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: scroll;
   }
   ul{
     margin: 0;
@@ -99,5 +100,9 @@
   }
   .relative{
     position: relative;
+  }
+  .mint-tabbar > .mint-tab-item.is-selected {
+    background: #f44336;
+    color: #ffffff;
   }
 </style>
