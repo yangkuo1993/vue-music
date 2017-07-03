@@ -22,6 +22,10 @@
         </div>
       </div>
       <broad-cast-title titleName="推荐歌单" path="123"></broad-cast-title>
+      <broad-cast-list :musicArray="musicPersonalized"></broad-cast-list>
+      <broad-cast-title titleName="独家放送" path="123"></broad-cast-title>
+      <mv-list :mvList="privateMv"></mv-list>
+      <broad-cast-title titleName="最新音乐" path="123"></broad-cast-title>
       <broad-cast-title titleName="精选专栏" path="123"></broad-cast-title>
       <broad-cast-list :musicArray="musicBoutique"></broad-cast-list>
     </div>
@@ -31,22 +35,38 @@
   import banner from '../components/banner'
   import broadCastTitle from '../components/broadCastTitle'
   import broadCastList from '../components/broadCastList'
+  import mvList from '../components/mvList'
   export default {
     name: 'personalRecommend',
     data () {
       return {
         // 精选专栏
-        musicBoutique: []
+        musicBoutique: [],
+        // 推荐歌单
+        musicPersonalized: [],
+        // 独家放送
+        privateMv: []
       }
     },
     components: {
       'Banner': banner,
       'broad-cast-title': broadCastTitle,
-      'broad-cast-list': broadCastList
+      'broad-cast-list': broadCastList,
+      'mv-list': mvList
     },
     created () {
       this.$store.dispatch('GET_BOUTIQUE_MUSIC').then((data) => {
         this.musicBoutique = data.playlists
+      }).catch((error) => {
+        console.log(error)
+      })
+      this.$store.dispatch('MUSIC_PERSONALIZED').then((data) => {
+        this.musicPersonalized = data.result
+      }).catch((error) => {
+        console.log(error)
+      })
+      this.$store.dispatch('PRIVATE_CONTENT').then((data) => {
+        this.privateMv = data.result
       }).catch((error) => {
         console.log(error)
       })

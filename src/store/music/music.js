@@ -20,6 +20,28 @@ export default {
           reject(error)
         })
       })
+    },
+    [music.MUSIC_PERSONALIZED] ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        Service.get(config.music.personalized).then((data) => {
+          if (data.status === 200) {
+            resolve(data.data)
+          }
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    },
+    [music.PRIVATE_CONTENT] ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        Service.get(config.music.privatecontent).then((data) => {
+          if (data.status === 200) {
+            resolve(data.data)
+          }
+        }).catch((error) => {
+          reject(error)
+        })
+      })
     }
   }
 }

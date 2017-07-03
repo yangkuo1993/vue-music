@@ -2,3 +2,5 @@
 export const GET_BOUTIQUE_MUSIC = 'GET_BOUTIQUE_MUSIC'
 // 推荐歌单
 export const MUSIC_PERSONALIZED = 'MUSIC_PERSONALIZED'
+// 独家放送
+export const PRIVATE_CONTENT = 'PRIVATE_CONTENT'
