@@ -26,6 +26,8 @@
       <broad-cast-title titleName="独家放送" path="123"></broad-cast-title>
       <mv-list :mvList="privateMv"></mv-list>
       <broad-cast-title titleName="最新音乐" path="123"></broad-cast-title>
+      <broad-cast-list :musicArray="newMusicList"></broad-cast-list>
+      <broad-cast-title titleName="推荐MV" path="123"></broad-cast-title>
       <broad-cast-title titleName="精选专栏" path="123"></broad-cast-title>
       <broad-cast-list :musicArray="musicBoutique"></broad-cast-list>
     </div>
@@ -45,7 +47,9 @@
         // 推荐歌单
         musicPersonalized: [],
         // 独家放送
-        privateMv: []
+        privateMv: [],
+        // 最新音乐
+        newMusicList: []
       }
     },
     components: {
@@ -67,6 +71,16 @@
       })
       this.$store.dispatch('PRIVATE_CONTENT').then((data) => {
         this.privateMv = data.result
+      }).catch((error) => {
+        console.log(error)
+      })
+      this.$store.dispatch('NEW_MUSIC_ALBUM').then((data) => {
+        this.newMusicList = data.albums
+      }).catch((error) => {
+        console.log(error)
+      })
+      this.$store.dispatch('PERSONALIZED_MV').then((data) => {
+        console.log(data)
       }).catch((error) => {
         console.log(error)
       })

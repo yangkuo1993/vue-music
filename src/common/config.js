@@ -7,7 +7,11 @@ module.exports = {
     // 推荐歌单
     personalized: '/personalized',
     // 独家放送
-    privatecontent: '/personalized/privatecontent'
+    privatecontent: '/personalized/privatecontent',
+    // 新碟上架
+    album: '/top/album',
+    // 推荐MV
+    personalizedMv: '/personalized/mv'
   },
   discover: {
     // 轮播图

@@ -42,6 +42,28 @@ export default {
           reject(error)
         })
       })
+    },
+    [music.NEW_MUSIC_ALBUM] ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        Service.get(config.music.album).then((data) => {
+          if (data.status === 200) {
+            resolve(data.data)
+          }
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    },
+    [music.PERSONALIZED_MV] ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        Service.get(config.music.personalizedMv).then((data) => {
+          if (data.status === 200) {
+            resolve(data.data)
+          }
+        }).catch((error) => {
+          reject(error)
+        })
+      })
     }
   }
 }

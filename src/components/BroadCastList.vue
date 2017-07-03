@@ -7,6 +7,7 @@
             <p class="play-count">
               <img style="width: 12px;" src="../assets/song.svg" alt="">
               {{music.playCount | playCount}}</p>
+            <!--<p class="music-describe">{{music.copywriter}}</p>-->
           </div>
           <p class="list-inline-p">{{music.name}}</p>
         </li>
@@ -52,6 +53,7 @@
   .list-inline{
     display: inline-block;
     position: relative;
+    vertical-align: top;
   }
   .inline-32{
     width: 32%;
@@ -78,9 +80,16 @@
   .play-count{
     margin: 0;
     position: absolute;
-    top: 0;
+    top: 0.2rem;
     font-size: 12px;
     color: #fff;
-    right: 0;
+    right: 0.2rem;
+  }
+  .music-describe{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    font-size: 12px;
   }
 </style>
