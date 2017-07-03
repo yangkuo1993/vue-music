@@ -39,8 +39,8 @@
     position: relative;
     font-size: 16px;
     color: #333333;
-    text-indent: 1rem;
-    padding: 0.2rem;
+    text-indent: 0.5rem;
+    padding: 0.5rem;
     text-decoration: none;
   }
   .title-broad:before{
@@ -50,7 +50,7 @@
     height: 16px;
     background: #f44336;
     left: 0;
-    top: 7px;
+    top: 0.61rem;
   }
   .title-broad:after{
     content: '';
@@ -58,8 +58,8 @@
     width: 20px;
     height: 16px;
     background: url('../assets/right.svg');
-    left: 100px;
-    top: 7px;
+    left: 85px;
+    top: 0.61rem;
     background-size: 100%;
     background-repeat: no-repeat;
   }

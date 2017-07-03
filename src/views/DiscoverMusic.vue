@@ -68,5 +68,6 @@
 <style>
   .tab-container-top{
     margin-top: 2.05rem;
+    margin-bottom: 3rem;
   }
 </style>
