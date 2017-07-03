@@ -47,9 +47,11 @@
     white-space: nowrap;
     overflow: hidden;
     overflow-x: scroll;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
+    background: rgba(255, 255, 255, 0.77);
+    z-index: 999;
   }
   .out-ul li{
     display: inline-block;
