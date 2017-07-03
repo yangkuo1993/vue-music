@@ -3,14 +3,14 @@
       <ul>
         <li v-show="exclusive" class="mv-list" v-for="(mv,index) in mvList" :class="[index === 0 ? 'wd-50' : index === 1 ? 'wd-50 margin-left-2' : 'img-with']">
           <div class="relative">
-            <img class="img-with" :src="mv.picUrl" alt="">
+            <img class="img-with" v-lazy="mv.picUrl" alt="">
             <div class="mv-bk"></div>
           </div>
           <p class="mv-describe">{{mv.name}}</p>
         </li>
         <li v-show="!exclusive" class="mv-list wd-50" v-for="(mv,index) in mvList" :class="[index%2 !== 0 ? 'margin-left-2' : '']">
           <div class="relative">
-            <img class="img-with" :src="mv.picUrl" alt="">
+            <img class="img-with" v-lazy="mv.picUrl" alt="">
             <p class="mv-play-count">
               <img style="width: 12px" src="../assets/mv.svg" alt="">
               {{mv.playCount}}

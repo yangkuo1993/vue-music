@@ -3,7 +3,7 @@
       <ul class="list-out-width">
         <li class="list-inline inline-32" v-for="(music,index) in emitArrayMusic" :class="[(index === 1 || index === 4) ? 'list-center-space' : '']">
           <div class="relative">
-            <img class="list-inline-img" :src="music.coverImgUrl || music.picUrl" alt="">
+            <img class="list-inline-img" v-lazy="music.coverImgUrl || music.picUrl" alt="">
             <p class="play-count">
               <img style="width: 12px;" src="../assets/song.svg" alt="">
               {{music.playCount | playCount}}</p>
