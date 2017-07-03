@@ -1,2 +1,4 @@
 // 获取精品歌单
 export const GET_BOUTIQUE_MUSIC = 'GET_BOUTIQUE_MUSIC'
+// 推荐歌单
+export const MUSIC_PERSONALIZED = 'MUSIC_PERSONALIZED'

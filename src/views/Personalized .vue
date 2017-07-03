@@ -21,6 +21,7 @@
             <p class="round-type-p">云音乐热歌榜</p>
         </div>
       </div>
+      <broad-cast-title titleName="推荐歌单" path="123"></broad-cast-title>
       <broad-cast-title titleName="精选专栏" path="123"></broad-cast-title>
       <broad-cast-list :musicArray="musicBoutique"></broad-cast-list>
     </div>
