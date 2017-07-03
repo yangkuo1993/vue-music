@@ -24,10 +24,11 @@
       <broad-cast-title titleName="推荐歌单" path="123"></broad-cast-title>
       <broad-cast-list :musicArray="musicPersonalized"></broad-cast-list>
       <broad-cast-title titleName="独家放送" path="123"></broad-cast-title>
-      <mv-list :mvList="privateMv"></mv-list>
+      <mv-list :mvList="privateMv" :exclusive="true"></mv-list>
       <broad-cast-title titleName="最新音乐" path="123"></broad-cast-title>
       <broad-cast-list :musicArray="newMusicList"></broad-cast-list>
       <broad-cast-title titleName="推荐MV" path="123"></broad-cast-title>
+      <mv-list :mvList="personalizedMV" :exclusive="false"></mv-list>
       <broad-cast-title titleName="精选专栏" path="123"></broad-cast-title>
       <broad-cast-list :musicArray="musicBoutique"></broad-cast-list>
     </div>
@@ -49,7 +50,9 @@
         // 独家放送
         privateMv: [],
         // 最新音乐
-        newMusicList: []
+        newMusicList: [],
+        // 推荐MV
+        personalizedMV: []
       }
     },
     components: {
@@ -80,7 +83,7 @@
         console.log(error)
       })
       this.$store.dispatch('PERSONALIZED_MV').then((data) => {
-        console.log(data)
+        this.personalizedMV = data.result
       }).catch((error) => {
         console.log(error)
       })
