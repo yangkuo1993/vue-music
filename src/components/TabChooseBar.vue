@@ -3,7 +3,9 @@
       <div class="search-div">
         <div class="search-inner-div">
           <input v-focus type="text" class="search-input" placeholder="搜索音乐、歌词、电台">
-          <button class="right-bk"></button>
+          <router-link to="/play">
+            <button class="right-bk"></button>
+          </router-link>
         </div>
       </div>
       <ul class="out-ul">

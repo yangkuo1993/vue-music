@@ -27,6 +27,11 @@ const Account = resolve => {
     resolve(require('@/views/account'))
   })
 } // 账号页
+const Play = resolve => {
+  require.ensure(['@/views/play'], () => {
+    resolve(require('@/views/play'))
+  })
+} // 账号页
 export default new Router({
   routes: [
     {
@@ -60,6 +65,11 @@ export default new Router({
       path: '/account',
       name: 'Account',
       component: Account
+    },
+    {
+      path: '/play',
+      name: 'Play',
+      component: Play
     },
     { path: '*', redirect: '/discover' }
   ]

@@ -1,35 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <mt-tabbar v-model="selected" style="z-index: 999;background: #f44336;position: fixed;
-    bottom: 0;">
-      <mt-tab-item id="发现音乐">
-        <img slot="icon" src="./assets/discover.svg">
-        发现音乐
-      </mt-tab-item>
-      <mt-tab-item id="我的音乐">
-        <img slot="icon" src="./assets/mymusic.svg">
-        我的音乐
-      </mt-tab-item>
-      <mt-tab-item id="朋友">
-        <img slot="icon" src="./assets/friends.svg">
-        朋友
-      </mt-tab-item>
-      <mt-tab-item id="账号">
-        <img slot="icon" src="./assets/count.svg">
-        账号
-      </mt-tab-item>
-    </mt-tabbar>
-    <mt-tab-container class="full-container" v-model="selected">
-      <mt-tab-container-item id="发现音乐">
-      </mt-tab-container-item>
-      <mt-tab-container-item id="我的音乐">
-      </mt-tab-container-item>
-      <mt-tab-container-item id="朋友">
-      </mt-tab-container-item>
-      <mt-tab-container-item id="账号">
-      </mt-tab-container-item>
-    </mt-tab-container>
   </div>
 </template>
 
@@ -38,7 +9,6 @@
     name: 'app',
     data () {
       return {
-        selected: '发现音乐'
       }
     },
     created () {
@@ -54,22 +24,8 @@
     components: {
     },
     methods: {
-      demo: function () {
-        console.log('ppp')
-      }
     },
     watch: {
-      selected: function (value) {
-        if (value === '发现音乐') {
-          this.$router.push({name: 'Discover'})
-        } else if (value === '我的音乐') {
-          this.$router.push({name: 'MyMusic'})
-        } else if (value === '朋友') {
-          this.$router.push({name: 'Friends'})
-        } else {
-          this.$router.push({name: 'Account'})
-        }
-      }
     }
   }
 </script>
