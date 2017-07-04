@@ -64,7 +64,7 @@
       'broad-cast-list': broadCastList,
       'mv-list': mvList
     },
-    created () {
+    mounted () {
       Indicator.open()
       this.$store.dispatch('GET_BOUTIQUE_MUSIC').then((data) => {
         this.musicBoutique = data.playlists
