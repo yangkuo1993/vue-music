@@ -1,14 +1,10 @@
 <template>
     <div>
-      <swiper :options="swiperOption" ref="mySwiper" v-show="showBanner">
-        <!-- slides -->
-        <swiper-slide v-for="banner in bannerList" :key="banner.targetId">
-          <img style="width: 100%" v-lazy="banner.pic" alt="">
-        </swiper-slide>
-        <!-- Optional controls -->
-        <div class="swiper-pagination"  slot="pagination"></div>
-        <div class="swiper-scrollbar"   slot="scrollbar"></div>
-      </swiper>
+      <mt-swipe :auto="4000" style="height: 8rem">
+        <mt-swipe-item v-for="banner in bannerList" :key="banner.targetId">
+          <img :src="banner.pic" :alt="banner.typeTitle" style="width: 100%">
+        </mt-swipe-item>
+      </mt-swipe>
     </div>
 </template>
 
@@ -17,36 +13,17 @@
     name: 'banner',
     data () {
       return {
-        bannerList: [],
-        swiperOption: {
-          notNextTick: true,
-          autoplay: 3000,
-          direction: 'horizontal',
-          grabCursor: true,
-          setWrapperSize: true,
-          autoHeight: true,
-          pagination: '.swiper-pagination',
-          paginationClickable: true,
-          prevButton: '.swiper-button-prev',
-          nextButton: '.swiper-button-next',
-          scrollbarHide: true,
-          mousewheelControl: true,
-          observeParents: true,
-          debugger: true,
-          onTransitionStart (swiper) {
-//            console.log(swiper)
-          }
-        },
-        showBanner: false
+        bannerList: []
       }
     },
-    created () {
+    mounted () {
       this.$store.dispatch('GET_BANNER_MUSIC').then((data) => {
         this.bannerList = data.banners
-        this.showBanner = true
       }).catch((error) => {
         console.log(error)
       })
+    },
+    computed: {
     }
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-show="!loading">
       <Banner></Banner>
       <div class="out-flex">
         <div class="inline-block inline-33">
@@ -21,17 +21,17 @@
             <p class="round-type-p">云音乐热歌榜</p>
         </div>
       </div>
-      <broad-cast-title titleName="推荐歌单" path="123"></broad-cast-title>
-      <broad-cast-list :musicArray="musicPersonalized"></broad-cast-list>
-      <broad-cast-title titleName="独家放送" path="123"></broad-cast-title>
-      <mv-list :mvList="privateMv" :exclusive="true"></mv-list>
-      <broad-cast-title titleName="最新音乐" path="123"></broad-cast-title>
-      <broad-cast-list :musicArray="newMusicList"></broad-cast-list>
-      <broad-cast-title titleName="推荐MV" path="123"></broad-cast-title>
-      <mv-list :mvList="personalizedMV" :exclusive="false"></mv-list>
-      <broad-cast-title titleName="精选专栏" path="123"></broad-cast-title>
-      <broad-cast-list :musicArray="musicBoutique"></broad-cast-list>
-    </div>
+        <broad-cast-title titleName="推荐歌单" path="123"></broad-cast-title>
+        <broad-cast-list :musicArray="musicPersonalized"></broad-cast-list>
+        <broad-cast-title titleName="独家放送" path="123"></broad-cast-title>
+        <mv-list :mvList="privateMv" :exclusive="true"></mv-list>
+        <broad-cast-title titleName="最新音乐" path="123"></broad-cast-title>
+        <broad-cast-list :musicArray="newMusicList"></broad-cast-list>
+        <broad-cast-title titleName="推荐MV" path="123"></broad-cast-title>
+        <mv-list :mvList="personalizedMV" :exclusive="false"></mv-list>
+        <broad-cast-title titleName="精选专栏" path="123"></broad-cast-title>
+        <broad-cast-list :musicArray="musicBoutique"></broad-cast-list>
+      </div>
 </template>
 
 <script>
@@ -39,6 +39,7 @@
   import broadCastTitle from '../components/broadCastTitle'
   import broadCastList from '../components/broadCastList'
   import mvList from '../components/mvList'
+  import { Indicator } from 'mint-ui'
   export default {
     name: 'personalRecommend',
     data () {
@@ -52,7 +53,9 @@
         // 最新音乐
         newMusicList: [],
         // 推荐MV
-        personalizedMV: []
+        personalizedMV: [],
+        // 等待加载
+        loading: true
       }
     },
     components: {
@@ -62,30 +65,23 @@
       'mv-list': mvList
     },
     created () {
+      Indicator.open()
       this.$store.dispatch('GET_BOUTIQUE_MUSIC').then((data) => {
         this.musicBoutique = data.playlists
-      }).catch((error) => {
-        console.log(error)
-      })
-      this.$store.dispatch('MUSIC_PERSONALIZED').then((data) => {
+        return this.$store.dispatch('MUSIC_PERSONALIZED')
+      }).then((data) => {
         this.musicPersonalized = data.result
-      }).catch((error) => {
-        console.log(error)
-      })
-      this.$store.dispatch('PRIVATE_CONTENT').then((data) => {
+        return this.$store.dispatch('PRIVATE_CONTENT')
+      }).then((data) => {
         this.privateMv = data.result
-      }).catch((error) => {
-        console.log(error)
-      })
-      this.$store.dispatch('NEW_MUSIC_ALBUM').then((data) => {
+        return this.$store.dispatch('NEW_MUSIC_ALBUM')
+      }).then((data) => {
         this.newMusicList = data.albums
-      }).catch((error) => {
-        console.log(error)
-      })
-      this.$store.dispatch('PERSONALIZED_MV').then((data) => {
+        return this.$store.dispatch('PERSONALIZED_MV')
+      }).then((data) => {
         this.personalizedMV = data.result
-      }).catch((error) => {
-        console.log(error)
+        this.loading = false
+        Indicator.close()
       })
     }
   }
