@@ -19,6 +19,7 @@ const actions = {
     var demo = await api.recommendMusic()
     console.log(demo)
     commit(types.MUSIC_PLAYING)
+    return demo
   }
 }
 

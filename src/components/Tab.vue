@@ -1,9 +1,9 @@
 <template>
   <div class="tab">
     <van-tabs @click="handleTabClick">
-        <van-tab class="van-tabs" title="推荐音乐">推荐音乐</van-tab>
-        <van-tab title="热歌榜">热歌榜</van-tab>
-        <van-tab title="搜索">搜索</van-tab>
+        <van-tab class="van-tabs" title="推荐音乐"></van-tab>
+        <van-tab title="热歌榜"></van-tab>
+        <van-tab title="搜索"></van-tab>
     </van-tabs>
   </div>
 </template>
