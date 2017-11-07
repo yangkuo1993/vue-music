@@ -1,4 +1,8 @@
 // import * as types from './mutation_types'
-
-export const addToCart = ({ commit }, product) => {
+import api from '../api/index'
+export default {
+  async demo ({ commit }, product) {
+    var demo = await api.recommendMusic()
+    console.log(demo)
+  }
 }
