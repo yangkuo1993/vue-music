@@ -11,5 +11,10 @@ export default {
 </script>
 
 <style>
-
+body{
+  color: #333;
+}
+.relative{
+  position: relative
+}
 </style>

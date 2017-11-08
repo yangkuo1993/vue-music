@@ -15,11 +15,15 @@ const mutations = {
 }
 
 const actions = {
-  async musicRecommend ({ commit }, product) {
-    var demo = await api.recommendMusic()
-    console.log(demo)
+  // 获取推荐音乐
+  async musicRecommend ({ commit }) {
+    var bkData = await api.recommendMusic()
     commit(types.MUSIC_PLAYING)
-    return demo
+    return bkData
+  },
+  async musicNew ({ commit }) {
+    var bkData = await api.newMusic()
+    return bkData
   }
 }
 

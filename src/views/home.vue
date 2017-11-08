@@ -8,11 +8,19 @@
     <tab-top ref="titleTab" v-on:handleTabClick="chooseTab" :foo.sync="tab"></tab-top>
     <div v-show="tab === 0" class="title">
       <title-tie name="推荐歌单"></title-tie>
-      <van-row gutter="20">
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
+      <van-row gutter="5" style="margin-bottom: 20px;">
+        <div class="thr-list" v-for="(list, index) in recomendMusic" :key="index">
+          <van-col span="8" v-for="music in list" :key="music.id">
+            <div class="music-img relative">
+              <span class="play-count">{{music.playCount | formatPlayCount}}</span>
+              <img :src="music.picUrl" alt="">
+            </div>
+            <p class="recommend-describe">{{music.name}}</p>
+          </van-col>
+        </div>
       </van-row>
+      <title-tie name="最新音乐"></title-tie>
+      <music v-for="music in newMusic" :key="music.id" :info="music"></music>
     </div>
     <div v-show="tab === 1" class="title">{{tab}}111111</div>
     <div v-show="tab === 2" class="title">{{tab}}2222222</div>
@@ -28,13 +36,21 @@ export default {
   name: 'home',
   data () {
     return {
-      tab: 0
+      tab: 0,
+      recomendMusic: [],
+      newMusic: []
     }
   },
   mounted () {
     this.$store.dispatch('musicRecommend').then((data) => {
+      let bkData = data.result
+      while (bkData.length) {
+        this.recomendMusic.push(bkData.splice(0, 3))
+      }
+      return this.$store.dispatch('musicNew')
+    }).then((data) => {
       console.log(data)
-      console.log(this.$store.state.playing.name)
+      this.newMusic = data.result
     })
   },
   methods: {
@@ -42,9 +58,36 @@ export default {
       this.tab = obj
     }
   },
+  filters: {
+    /** @augments
+     * 播放数据
+     * 根据网易云音乐格式    1.1万次
+     * try catch捕获异常数据返回
+    */
+    formatPlayCount (data) {
+      try {
+        data = data.toString()
+        let index = data.indexOf('.')
+        if (index !== -1) {
+          let thousand = data.substring(0, index - 4)
+          let decimals = data.substring(index - 4, index - 3)
+          let playCount = thousand + '.' + decimals + '万'
+          return playCount
+        } else {
+          let thousand = data.substring(0, data.length - 4)
+          let decimals = data.substring(data.length - 4, data.length - 3)
+          let playCount = thousand + '.' + decimals + '万'
+          return playCount
+        }
+      } catch (e) {
+        return data
+      }
+    }
+  },
   components: {
     'tab-top': () => import('@/components/Tab'),
-    'title-tie': () => import('@/components/Title')
+    'title-tie': () => import('@/components/Title'),
+    'music': () => import('@/components/Music')
   }
 }
 </script>
@@ -75,5 +118,55 @@ export default {
   .logo{
     width: 142px;
     height: 25px;
+  }
+  .music-img{
+    padding-bottom: 100%;
+  }  
+  .music-img > img{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+  .music-img::after{
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 20px;
+    z-index: 2;
+    background-image: linear-gradient(180deg,rgba(0,0,0,.2),transparent);
+  }
+  .play-count{
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    z-index: 3;
+    padding-left: 13px;
+    color: #fff;
+    font-size: 12px;
+    background-position: 0;
+    background-repeat: no-repeat;
+    background-size: 11px 10px;
+    text-shadow: 1px 0 0 rgba(0,0,0,.15);
+  }
+  .recommend-describe{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 6px 2px 0 6px;
+    line-height: 1.2;
+    font-size: 13px;
+    margin: 0;
+  }
+  .thr-list{
+    overflow: hidden;
+    padding-bottom: 16px;
+  }
+  .title{
+    margin-top: 20px;
   }
 </style>
