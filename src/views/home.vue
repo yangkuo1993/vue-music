@@ -22,7 +22,9 @@
       <title-tie name="最新音乐"></title-tie>
       <music v-for="music in newMusic" :key="music.id" :info="music"></music>
     </div>
-    <div v-show="tab === 1" class="title">{{tab}}111111</div>
+    <div v-show="tab === 1" class="title">
+      <music v-for="music in hotMusic" :key="music.id" :info="music" musicType="hot"></music>
+    </div>
     <div v-show="tab === 2" class="title">{{tab}}2222222</div>
   </div>
 </template>
@@ -38,7 +40,8 @@ export default {
     return {
       tab: 0,
       recomendMusic: [],
-      newMusic: []
+      newMusic: [],
+      hotMusic: []
     }
   },
   mounted () {
@@ -56,6 +59,12 @@ export default {
   methods: {
     chooseTab (obj) {
       this.tab = obj
+      if (this.tab === 1) {
+        this.$store.dispatch('hotMusic').then((data) => {
+          console.log(data)
+          this.hotMusic = data.result.tracks
+        })
+      }
     }
   },
   filters: {
@@ -121,7 +130,7 @@ export default {
   }
   .music-img{
     padding-bottom: 100%;
-  }  
+  }
   .music-img > img{
     width: 100%;
     position: absolute;
@@ -167,6 +176,6 @@ export default {
     padding-bottom: 16px;
   }
   .title{
-    margin-top: 20px;
+    margin-top: 64px;
   }
 </style>

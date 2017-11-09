@@ -6,11 +6,13 @@
                 <div class="top">
                     <div class="name">{{info.name}}</div>
                     <div class="singer">
-                        {{info.song.artists[0].name}}-{{info.name}}
+                      <i class="music-sq"></i>
+                      <span v-if="musicType !== 'hot'">{{info.song.artists[0].name}}-{{info.name}}</span>
+                      <span v-else>{{info.artists[0].name}}-{{info.name}}</span>
                     </div>
                 </div>
-                <div>
-                    <span></span>
+                <div class="bottom">
+                    <span class="music-pl"></span>
                 </div>
             </div>
         </a>
@@ -25,6 +27,9 @@ export default {
     info: {
       type: Object,
       required: true
+    },
+    musicType: {
+      type: String
     }
   },
   data () {
@@ -67,11 +72,10 @@ export default {
     left: 0;
     pointer-events: none;
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
     -webkit-transform-origin: top left;
     transform-origin: top left;
     border: 0 solid rgba(0,0,0,.1);
+    border-bottom-width: 1px;
 }
 .top .name{
     overflow: hidden;
@@ -79,6 +83,7 @@ export default {
     white-space: nowrap;
     word-break: normal;
     font-size: 17px;
+    color: #333333;
 }
 .top .singer{
     overflow: hidden;
@@ -88,4 +93,27 @@ export default {
     font-size: 12px;
     color: #888;
 }
+  .music-sq{
+    display: inline-block;
+    width: 12px;
+    height: 8px;
+    margin-right: 4px;
+    background: url(../assets/index_icon_2x.png) no-repeat;
+    background-size: 166px 97px;
+  }
+  .music-pl{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url(../assets/index_icon_2x.png) no-repeat;
+    background-size: 166px 97px;
+    background-position: -24px 0;
+  }
+  .bottom{
+    display: -webkit-box;
+    display: flex;
+     -webkit-box-align: center;
+    align-items: center;
+    padding: 0 10px;
+  }
 </style>

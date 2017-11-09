@@ -24,6 +24,11 @@ const actions = {
   async musicNew ({ commit }) {
     var bkData = await api.newMusic()
     return bkData
+  },
+  // 获取网易云音乐热歌榜单
+  async hotMusic ({ commit }) {
+    var bkData = await api.hotMuiscWy(1)
+    return bkData
   }
 }
 

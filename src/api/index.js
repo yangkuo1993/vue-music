@@ -9,5 +9,9 @@ export default {
   // new music
   newMusic () {
     return axios.get('/personalized/newsong')
+  },
+  // 获取网易云音乐热歌榜单
+  hotMuiscWy (id) {
+    return axios.get('/top/list?idx=' + id)
   }
 }
