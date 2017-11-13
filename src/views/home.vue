@@ -25,7 +25,18 @@
     <div v-show="tab === 1" class="title">
       <music v-for="music in hotMusic" :key="music.id" :info="music" musicType="hot"></music>
     </div>
-    <div v-show="tab === 2" class="title">{{tab}}2222222</div>
+    <div v-show="tab === 2" class="title-three">
+      <div>
+        <form class="search-form f-bd f-bd-btm">
+          <div class="input-cover">
+            <i class="u-svg u-svg-srch"></i>
+            <input type="text" name="search" class="input" placeholder="" value="" autocomplete="off" v-model="searchValue">
+            <label class="holder">{{placeholderValue}}</label>
+            <figure class="close"><i class="u-svg u-svg-empty" :class="[searchValue.length > 0 ? 'show' : 'hide']" @click.stop="emptySearch"></i></figure>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,7 +52,9 @@ export default {
       tab: 0,
       recomendMusic: [],
       newMusic: [],
-      hotMusic: []
+      hotMusic: [],
+      placeholderValue: '搜索歌曲、歌手、专辑',
+      searchValue: ''
     }
   },
   mounted () {
@@ -65,6 +78,9 @@ export default {
           this.hotMusic = data.result.tracks
         })
       }
+    },
+    emptySearch () {
+      this.searchValue = ''
     }
   },
   filters: {
@@ -97,6 +113,15 @@ export default {
     'tab-top': () => import('@/components/Tab'),
     'title-tie': () => import('@/components/Title'),
     'music': () => import('@/components/Music')
+  },
+  watch: {
+    'searchValue' (data) {
+      if (data.length > 0) {
+        this.placeholderValue = ''
+      } else {
+        this.placeholderValue = '搜索歌曲、歌手、专辑'
+      }
+    }
   }
 }
 </script>
@@ -177,5 +202,104 @@ export default {
   }
   .title{
     margin-top: 64px;
+  }
+  .search-form{
+    padding: 15px 10px;
+  }
+  .input-cover{
+    position: relative;
+    width: 100%;
+    height: 30px;
+    padding: 0 30px;
+    box-sizing: border-box;
+    background: #ebecec;
+    border-radius: 30px;
+  }
+  .u-svg{
+    display: inline-block;
+    vertical-align: middle;
+    background-position: 0 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .u-svg-srch {
+    width: 16px;
+    height: 16px;
+    background-image: url(../assets/search.svg);
+    position: absolute;
+    left: 0;
+    top: 7px;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+  .input{
+    -webkit-appearance: none;
+    border-radius: 0;
+    border: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 18px;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+  }
+  .holder{
+    position: absolute;
+    left: 30px;
+    top: 5px;
+    font-size: 14px;
+    color: #c9c9c9;
+    background: transparent;
+    pointer-events: none;
+  }
+  .close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin: 0;
+  }
+  .u-svg-empty{
+    display: none;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    background-image: url("../assets/close-fill.svg")
+  }
+  .title-three{
+    margin-top: 44px;
+  }
+  .f-bd {
+    position: relative;
+  }
+  .f-bd-btm:after {
+    border-bottom-width: 1px !important;
+  }
+  .f-bd:after {
+    position: absolute;
+    z-index: 2;
+    content: "";
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+    border: 0 solid rgba(0,0,0,.1);
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+  }
+  .show{
+    display: inline-block;
+  }
+  .hide{
+    display: none;
   }
 </style>

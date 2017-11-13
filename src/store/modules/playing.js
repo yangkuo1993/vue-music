@@ -29,6 +29,11 @@ const actions = {
   async hotMusic ({ commit }) {
     var bkData = await api.hotMuiscWy(1)
     return bkData
+  },
+  // 搜索音乐
+  async searchMusic ({commit}, musicInfo) {
+    var bkData = await api.searchMusic(musicInfo)
+    return bkData
   }
 }
 

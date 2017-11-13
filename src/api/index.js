@@ -13,5 +13,9 @@ export default {
   // 获取网易云音乐热歌榜单
   hotMuiscWy (id) {
     return axios.get('/top/list?idx=' + id)
+  },
+  // 搜索音乐
+  searchMusic (keywords) {
+    return axios.get('/search?keywords=' + keywords)
   }
 }
