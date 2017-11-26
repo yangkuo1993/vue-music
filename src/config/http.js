@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://localhost:3389'
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
     // Do something before request is sent

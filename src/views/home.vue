@@ -30,7 +30,7 @@
         <form class="search-form f-bd f-bd-btm">
           <div class="input-cover">
             <i class="u-svg u-svg-srch"></i>
-            <input type="text" name="search" class="input" placeholder="" value="" autocomplete="off" v-model="searchValue">
+            <input type="text" name="search" class="input" placeholder="" value="" autocomplete="off" v-model="searchValue" @input="keydown($event)">
             <label class="holder">{{placeholderValue}}</label>
             <figure class="close"><i class="u-svg u-svg-empty" :class="[searchValue.length > 0 ? 'show' : 'hide']" @click.stop="emptySearch"></i></figure>
           </div>
@@ -45,6 +45,13 @@ import Vue from 'vue'
 import { Row, Col } from 'vant'
 Vue.component(Row.name, Row)
 Vue.component(Col.name, Col)
+function throttle (method, delay) {
+  clearTimeout(method['timeId'])
+  method['timeId'] = setTimeout(() => {
+    method.call(this)
+  }, delay)
+}
+
 export default {
   name: 'home',
   data () {
@@ -54,7 +61,8 @@ export default {
       newMusic: [],
       hotMusic: [],
       placeholderValue: '搜索歌曲、歌手、专辑',
-      searchValue: ''
+      searchValue: '',
+      suggest: []
     }
   },
   mounted () {
@@ -81,6 +89,18 @@ export default {
     },
     emptySearch () {
       this.searchValue = ''
+    },
+    searchSuggest () {
+      this.$store.dispatch('searchSuggest', this.searchValue).then((data) => {
+        console.log(data)
+      })
+    },
+    keydown (data) {
+      if (data.target.value.length === 0) {
+        this.placeholderValue = '搜索歌曲、歌手、专辑'
+      } else {
+        this.placeholderValue = ''
+      }
     }
   },
   filters: {
@@ -118,6 +138,7 @@ export default {
     'searchValue' (data) {
       if (data.length > 0) {
         this.placeholderValue = ''
+        throttle(this.searchSuggest, 500)
       } else {
         this.placeholderValue = '搜索歌曲、歌手、专辑'
       }

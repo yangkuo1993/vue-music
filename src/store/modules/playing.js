@@ -34,6 +34,11 @@ const actions = {
   async searchMusic ({commit}, musicInfo) {
     var bkData = await api.searchMusic(musicInfo)
     return bkData
+  },
+  // 搜索建议
+  async searchSuggest ({commit}, suggest) {
+    var bkData = await api.searchSuggest(suggest)
+    return bkData
   }
 }
 

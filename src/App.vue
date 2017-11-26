@@ -11,6 +11,10 @@ export default {
 </script>
 
 <style>
+  html,body{
+    width: 100%;
+    overflow-x: hidden;
+  }
 body{
   color: #333;
 }

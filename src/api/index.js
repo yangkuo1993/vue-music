@@ -17,5 +17,9 @@ export default {
   // 搜索音乐
   searchMusic (keywords) {
     return axios.get('/search?keywords=' + keywords)
+  },
+  // 搜索建议
+  searchSuggest (suggest) {
+    return axios.get('/search/suggest?keywords=' + suggest)
   }
 }
