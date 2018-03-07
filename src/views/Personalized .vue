@@ -65,7 +65,7 @@
       'mv-list': mvList
     },
     mounted () {
-      Indicator.open()
+//      Indicator.open()
       this.$store.dispatch('GET_BOUTIQUE_MUSIC').then((data) => {
         this.musicBoutique = data.playlists
         return this.$store.dispatch('MUSIC_PERSONALIZED')
